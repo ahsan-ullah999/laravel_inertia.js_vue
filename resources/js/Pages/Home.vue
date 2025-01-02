@@ -7,9 +7,10 @@ import { Head } from '@inertiajs/vue3';
 
 <template>
     <Head :title="` ${$page.component}`" />
+    <Link class="mt-[600px] block" href="/" preserve-scroll>Refresh</Link>
 
 
-<h1>{{$page.props.user}}</h1>
+
 
 
 </template>

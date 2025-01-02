@@ -15,8 +15,8 @@
                 <h1>{{$page.props.auth.user}}</h1>
                 <div class="space-x-6">
 
-                    <Link href="/">Home</Link>
-                    <Link href="/about">About</Link>
+                    <Link :href="route('home')">Home</Link>
+                    <Link :href="route('about')">About</Link>
 
                 </div>
             </nav>
