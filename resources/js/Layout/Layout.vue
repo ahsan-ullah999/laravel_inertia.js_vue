@@ -12,6 +12,7 @@
     <div>
         <header class="bg-indigo-400 text-white">
             <nav class="flex item-center justify-between p-4 max-w-screen-lg mx-auto">
+                <h1>{{$page.props.auth.user}}</h1>
                 <div class="space-x-6">
 
                     <Link href="/">Home</Link>

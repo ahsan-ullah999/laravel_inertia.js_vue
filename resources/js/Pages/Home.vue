@@ -9,7 +9,7 @@ import { Head } from '@inertiajs/vue3';
     <Head :title="` ${$page.component}`" />
 
 
-<h1>{{$page.component}}</h1>
+<h1>{{$page.props.user}}</h1>
 
 
 </template>
