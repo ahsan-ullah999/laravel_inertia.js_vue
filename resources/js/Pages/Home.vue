@@ -6,13 +6,10 @@ import { Head } from '@inertiajs/vue3';
 
 
 <template>
-    <Head>
-        <title>
-            Home
-        </title>
-    </Head>
+    <Head :title="` ${$page.component}`" />
 
-<h1>Hello world</h1>
+
+<h1>{{$page.component}}</h1>
 
 
 </template>
