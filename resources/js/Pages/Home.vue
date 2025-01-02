@@ -1,6 +1,18 @@
+<script setup>
+import { Head } from '@inertiajs/vue3';
+
+
+</script>
+
+
 <template>
-<div>
+    <Head>
+        <title>
+            Home
+        </title>
+    </Head>
+
 <h1>Hello world</h1>
-</div>
+
 
 </template>
