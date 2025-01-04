@@ -1,14 +1,19 @@
  <script setup>
-import { reactive } from "vue";
+import { useForm } from "@inertiajs/vue3";
 
-const from = reactive({
+
+
+
+const form = useForm({
     name: null,
     email: null,
     password: null,
     password_confirmation: null,
 });
 const submit = () => {
-    console.log("form");
+    form.post("/register", {
+        onError: () => form.reset("password","password_confirmation"),
+    });
 
 
 };
@@ -25,23 +30,26 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div class="mb-6">
                 <label>Name</label>
-                <input type="text"/>
+                <input type="text" v-model="form.name" />
+                <small>{{ form.errors.name }}</small>
             </div>
             <div class="mb-6">
                 <label>Email</label>
-                <input type="text" />
+                <input type="email" v-model="form.email" />
+                <small>{{ form.errors.email }}</small>
             </div>
             <div class="mb-6">
                 <label>Password</label>
-                <input type="password" />
+                <input type="password" v-model="form.password" />
+                <small>{{ form.errors.password }}</small>
             </div>
             <div class="mb-6">
                 <label>Confirm Password</label>
-                <input type="password" />
+                <input type="password"  v-model="form.password_confirmation" />
             </div>
             <div>
                 <p class="text-slate-600 mb-2">Already a user? <a href="#" class="text-link">Login</a></p>
-                <button class="primary-btn">Register</button>
+                <button class="primary-btn" :disable="form.processing">Register</button>
             </div>
 
         </form>
