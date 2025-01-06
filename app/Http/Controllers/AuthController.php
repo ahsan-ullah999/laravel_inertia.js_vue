@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -9,19 +9,25 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function register(Request $request){
+
+
         //validation
         $validation = $request->validate([
+            // 'avatar'=>['file', 'nullable', 'max:3000'],
             'name'=>['required','max:255'],
             'email'=>['required','email','max:255','unique:users'],
             'password'=>['required','confirmed'],
 
         ]);
+        // if($request->hasFile('avatar')){
+        //    $validation['avatar'] = Storage::disk('public')->put('avatars', $request->avatar);
+        //     }
         //register
         $user = User::create($validation);
         //login
-        Auth:('$user');
+        Auth::login($user);
         //redirect
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
     public function login(Request $request){
         $validation = $request->validate([
