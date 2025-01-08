@@ -1,11 +1,13 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import PaginationLinks from "./Components/PaginationLinks.vue";
-import { data } from 'autoprefixer';
-import { list } from 'postcss';
+import { debounce } from "lodash";
+import { router } from "@inertiajs/vue3";
+import { ref, watch } from 'vue';
 
-defineProps({
+const props = defineProps({
     users: Object,
+    searchTerm:String,
 });
 const getDate = (date) =>
   new Date(date).toLocaleDateString("en-us", {
@@ -13,13 +15,23 @@ const getDate = (date) =>
     month: "long",
     day: "numeric",
   });
+
+const search = ref( props.searchTerm);
+watch(search, debounce((q) => router.get('/', { search:q}, {preserveState: true}),500));
+
 </script>
 
 
 
 <template>
     <Head :title="` ${$page.component}`" />
-    <div>
+
+     <div>
+         <div class="flex justify-end mb-4">
+      <div class="w-1/4">
+        <input type="search" placeholder="Search" v-model="search" />
+      </div>
+    </div>
         <table>
             <thead>
                 <tr class="bg-slate-300">
